@@ -4,25 +4,25 @@
  *  @version 2016-1-8
  */
 
-var ItemView = React.createClass({
+var ItemView = React.createClass({displayName: "ItemView",
 
         render:function(){
 
             var guidList = this.props.menu.guidList.map(function(item,index){
-                return (<li key={item.page+""+index}>
-                            <a className={this.props.page == item.page?"hover menu-item":"menu-item"} href={"#page_"+item.page+"?value="+item.showName} >
-                                <em>-</em>{item.showName}
-                            </a>
-                        </li>)
+                return (React.createElement("li", {key: item.page+""+index},
+                            React.createElement("a", {className: this.props.page == item.page?"hover menu-item":"menu-item", href: "#page_"+item.page+"?value="+item.showName},
+                                React.createElement("em", null, "-"), item.showName
+                            )
+                        ))
             }.bind(this));
 
-            return (<ol ref={this.props.menu.page} className={this.props.menu.page + "ol" + (this.props.page.indexOf(this.props.menu.page) != -1?" onChoos":"")}>
-                        {guidList}
-                    </ol>)
+            return (React.createElement("ol", {ref: this.props.menu.page, className: this.props.menu.page + "ol" + (this.props.page.indexOf(this.props.menu.page) != -1?" onChoos":"")},
+                        guidList
+                    ))
         }
     });
 
-var MenuView = React.createClass({
+var MenuView = React.createClass({displayName: "MenuView",
 
         /**
          *  操作菜单切换显示隐藏功能
@@ -37,34 +37,34 @@ var MenuView = React.createClass({
 
         render:function(){
             return (
-                <div className="menu l">
-                    <ul>
-                        {
+                React.createElement("div", {className: "menu l"},
+                    React.createElement("ul", null,
+
                             this.props.menuObject.menu.map(function(menu, index){
                                 if(menu.bind == undefined){
-                                    return (<li key={menu.page}>
-                                                <a className={this.props.menuObject.page == menu.page?"hover menu-item":"menu-item"} href={"#page_"+menu.page+"?value="+menu.areaName}>
-                                                    <span>
-                                                        <p>{menu.areaName}</p>
-                                                    </span>
-                                                </a>
-                                            </li>)
+                                    return (React.createElement("li", {key: menu.page},
+                                                React.createElement("a", {className: this.props.menuObject.page == menu.page?"hover menu-item":"menu-item", href: "#page_"+menu.page+"?value="+menu.areaName},
+                                                    React.createElement("span", null,
+                                                        React.createElement("p", null, menu.areaName)
+                                                    )
+                                                )
+                                            ))
                                 }else{
-                                    return (<li key={menu.page}>
-                                                <a onClick={this.handlerMenuEvent.bind(null,menu.page+'ol')} className={"more_icon " + menu.page + (this.props.menuObject.page.indexOf(menu.page) != -1?" onChoos":"")} href="javascript:void(0)">
-                                                    <span>
-                                                        <p>{menu.areaName}</p>
-                                                    </span>
-                                                </a>
-                                                <ItemView menu={menu} page={this.props.menuObject.page} />
-                                            </li>)
+                                    return (React.createElement("li", {key: menu.page},
+                                                React.createElement("a", {onClick: this.handlerMenuEvent.bind(null,menu.page+'ol'), className: "more_icon " + menu.page + (this.props.menuObject.page.indexOf(menu.page) != -1?" onChoos":""), href: "javascript:void(0)"},
+                                                    React.createElement("span", null,
+                                                        React.createElement("p", null, menu.areaName)
+                                                    )
+                                                ),
+                                                React.createElement(ItemView, {menu: menu, page: this.props.menuObject.page})
+                                            ))
                                 }
                             }.bind(this))
-                        }
-                    </ul>
-                </div>
+
+                    )
+                )
             )
         }
     });
 
-module.exports = MenuView;
+window.PGMenuView = MenuView;

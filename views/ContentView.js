@@ -4,33 +4,33 @@
  *  @version 2016-1-8
  */
 
-var ContentView = React.createClass({
+var ContentView = React.createClass({displayName: "ContentView",
 
         render:function(){
             return (
-                <div className="content l">
-                    <div className="mainContent">
-                        <div id="carouselPage" className="page-manage carousel slide">
-                            <div className="carousel-inner">
-                                {
+                React.createElement("div", {className: "content l"},
+                    React.createElement("div", {className: "mainContent"},
+                        React.createElement("div", {id: "carouselPage", className: "page-manage carousel slide"},
+                            React.createElement("div", {className: "carousel-inner"},
+
                                     this.props.menuObject.menu.map(function(menu,index){
                                         if(menu.bind == undefined){
-                                            return (<div key={"page"+menu.page} id={"page"+menu.page+"View"} className={"item " + (this.props.menuObject.page == menu.page?"active":"")}>
-                                                    </div>)
+                                            return (React.createElement("div", {key: "page"+menu.page, id: "page"+menu.page+"View", className: "item " + (this.props.menuObject.page == menu.page?"active":"")}
+                                                    ))
                                         }else{
                                             return menu.guidList.map(function(item,index){
-                                                        return (<div key={"item"+item.page} id={"page"+item.page+"View"} className={"item " + (this.props.menuObject.page == item.page?"active":"")}>
-                                                                </div>)
+                                                        return (React.createElement("div", {key: "item"+item.page, id: "page"+item.page+"View", className: "item " + (this.props.menuObject.page == item.page?"active":"")}
+                                                                ))
                                                     }.bind(this));
                                         }
                                     }.bind(this))
-                                }
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+                            )
+                        )
+                    )
+                )
             )
         }
     });
 
-module.exports = ContentView;
+window.PGContentView = ContentView;
