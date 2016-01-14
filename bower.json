@@ -1,7 +1,7 @@
 {
   "name": "backstage",
   "version": "1.0.0",
-  "main": "views/index.js",
+  "main": ["views/ContentView.js","views/MenuView.js","views/Utils.js"],
   "description": "后台框架",
   "authors": [
     "fenghaiting"
