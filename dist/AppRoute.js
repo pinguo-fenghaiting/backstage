@@ -51,6 +51,6 @@ var pageRoute = function (page) {
     });
 
 c360.route = {
-    defaultRoute:DefaultRoute,
+    DefaultRoute:DefaultRoute,
     AppRoute:AppRoute
 }
