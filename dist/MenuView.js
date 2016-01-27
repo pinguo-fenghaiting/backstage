@@ -4,6 +4,8 @@
  *  @version 2016-1-8
  */
 
+$.ns("c360.menu");
+
 var ItemView = React.createClass({displayName: "ItemView",
 
         render:function(){
@@ -67,4 +69,4 @@ var MenuView = React.createClass({displayName: "MenuView",
         }
     });
 
-window.PGMenuView = MenuView;
+c360.menu = MenuView;

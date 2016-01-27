@@ -4,6 +4,8 @@
  *  @version 2016-1-8
  */
 
+$.ns("c360.content");
+
 var ContentView = React.createClass({displayName: "ContentView",
 
         render:function(){
@@ -33,4 +35,4 @@ var ContentView = React.createClass({displayName: "ContentView",
         }
     });
 
-window.PGContentView = ContentView;
+c360.content = ContentView;
