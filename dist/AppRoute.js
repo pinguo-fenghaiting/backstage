@@ -21,7 +21,7 @@ var AppStore = Reflux.createStore({
         var request = c360.utils.getQueryString(),
             value = request['value'] || "模版配置",
             TemplateView = eval("c360."+page);
-        ReactDOM.render(<TemplateView value={value} />, document.getElementById("page"+page+"View"));
+        ReactDOM.render(React.createElement(TemplateView, {value: value}), document.getElementById("page"+page+"View"));
     }
 
 });
