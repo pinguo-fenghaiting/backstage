@@ -1,7 +1,7 @@
 {
   "name": "backstage",
   "version": "1.0.0",
-  "main": ["dist/ContentView.js","dist/MenuView.js","dist/Utils.js"],
+  "main": ["dist/Utils.js","dist/ContentView.js","dist/MenuView.js","dist/AppRoute.js"],
   "description": "后台框架",
   "authors": [
     "fenghaiting"
