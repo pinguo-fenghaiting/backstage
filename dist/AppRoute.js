@@ -6,7 +6,7 @@
 
 $.ns('c360.route');
 
-var AppAction = Reflux.createActions(['setPage']);
+var AppAction = Reflux.createActions(['setPageTemplate']);
 
 var AppStore = Reflux.createStore({
 
@@ -17,31 +17,11 @@ var AppStore = Reflux.createStore({
      *  @param  string page 表示页面名称
      *  @return 无
      */
-    onSetPage: function(page) {
+    onSetPageTemplate: function(page) {
         var request = c360.utils.getQueryString(),
             value = request['value'] || "模版配置",
             TemplateView = eval("c360."+page);
         ReactDOM.render(React.createElement(TemplateView, {value: value}), document.getElementById("page"+page+"View"));
-    }
-
-});
-
-var MainAction = Reflux.createActions(['setPage']);
-
-var MainStore = Reflux.createStore({
-
-    listenables:[MainAction],
-
-    getInitialState:function(){
-
-        return this.menuObject = {
-            page:"SceneTemplate"
-        };
-    },
-
-    onSetPage:function(page){
-        this.menuObject.page = page;
-        this.trigger(this.menuObject);
     }
 
 });
@@ -62,8 +42,8 @@ var pageRoute = function (page) {
     },
 
     DefaultRoute = function(page){
-        MainAction.setPage(page);
-        AppAction.setPage(page);
+        AppAction.setPageTemplate(page);
+        $(document.body).trigger('page',page);
     },
 
     AppRoute = Router({
